@@ -3,37 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Компоненты Коммуникации</title>
+    <title>Комм-Стратегия: Сопоставление</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Интерактивное задание: Компоненты Коммуникационной Стратегии</h1>
-    <div class="container">
-        <div class="targets">
-            <h2>Категории</h2>
-            <div class="target-box" data-category="Цель">Цель (Зачем?)</div>
-            <div class="target-box" data-category="Аудитория">Целевая Аудитория (Для кого?)</div>
-            <div class="target-box" data-category="Сообщение">Ключевое Сообщение (Что?)</div>
-            <div class="target-box" data-category="Каналы">Каналы (Как?)</div>
-            <div class="target-box" data-category="Измерение">Измерение Эффективности (Результат?)</div>
-        </div>
-        <div class="draggable-items">
-            <h2>Элементы Стратегии</h2>
-            <div class="item" draggable="true" data-type="Цель">Повышение узнаваемости бренда</div>
-            <div class="item" draggable="true" data-type="Аудитория">Молодежь 18-25 лет</div>
-            <div class="item" draggable="true" data-type="Сообщение">"Наше приложение - твой гид по городу"</div>
-            <div class="item" draggable="true" data-type="Каналы">Социальные сети (Instagram, TikTok)</div>
-            <div class="item" draggable="true" data-type="Измерение">Количество установок приложения</div>
-            <div class="item" draggable="true" data-type="Цель">Увеличение продаж на 15%</div>
-            <div class="item" draggable="true" data-type="Аудитория">Корпоративные клиенты B2B</div>
-            <div class="item" draggable="true" data-type="Сообщение">"Инновационные решения для вашего бизнеса"</div>
-            <div class="item" draggable="true" data-type="Каналы">Email-рассылки, отраслевые конференции</div>
-            <div class="item" draggable="true" data-type="Измерение">ROI, CTR рассылок</div>
-        </div>
-    </div>
-    <button id="checkButton">Проверить</button>
-    <div id="resultMessage"></div>
+    <div class="quiz-container">
+        <h1>Компоненты стратегии</h1>
+        <p class="instruction">Выберите компонент, затем подходящее описание</p>
+        
+        <div class="game-grid">
+            <div class="column" id="terms-column">
+                <!-- Кнопки-термины -->
+                <button class="btn term" data-id="target">🎯 Целевая аудитория</button>
+                <button class="btn term" data-id="message">💬 Ключевое сообщение</button>
+                <button class="btn term" data-id="channels">📡 Каналы коммуникации</button>
+                <button class="btn term" data-id="kpi">📈 KPI и метрики</button>
+            </div>
 
+            <div class="column" id="defs-column">
+                <!-- Кнопки-определения -->
+                <button class="btn def" data-match="channels">Где мы транслируем контент (соцсети, СМИ, рассылки)?</button>
+                <button class="btn def" data-match="target">Конкретный сегмент людей, чьи проблемы решает продукт.</button>
+                <button class="btn def" data-match="kpi">Цифровые показатели эффективности кампании.</button>
+                <button class="btn def" data-match="message">Главная мысль, которую должен запомнить клиент.</button>
+            </div>
+        </div>
+        <button id="reset-btn">Начать заново</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
