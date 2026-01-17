@@ -1,24 +1,32 @@
-body {
-    font-family: sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+:root {
+    --primary: #6366f1;
+    --success: #22c55e;
+    --error: #ef4444;
+    --bg: #f8fafc;
 }
 
-h1 {
-    color: #333;
-    margin-bottom: 30px;
+body { font-family: sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; }
+.quiz-container { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 700px; width: 100%; }
+h1 { text-align: center; color: #1e293b; margin-bottom: 10px; }
+.instruction { text-align: center; color: #64748b; margin-bottom: 30px; }
+
+.game-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; }
+.column { display: flex; flex-direction: column; gap: 12px; }
+
+.btn { 
+    padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; 
+    background: white; cursor: pointer; transition: all 0.2s; text-align: left; font-size: 14px;
 }
 
-.container {
-    display: flex;
-    gap: 40px;
-    width: 90%;
-    max-width: 1000px;
-    justify-content: space-around;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow
+.btn:hover:not(.disabled) { border-color: var(--primary); background: #f5f3ff; }
+.btn.selected { border-color: var(--primary); background: var(--primary); color: white; }
+.btn.matched { visibility: hidden; opacity: 0; pointer-events: none; }
+.btn.error { animation: shake 0.4s; border-color: var(--error); }
+
+#reset-btn { width: 100%; margin-top: 30px; padding: 12px; border: none; border-radius: 8px; background: #334155; color: white; cursor: pointer; }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
