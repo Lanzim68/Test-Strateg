@@ -1,39 +1,38 @@
-const draggables = document.querySelectorAll('.drag-item');
-const dropZones = document.querySelectorAll('.drop-zone');
+let selectedTerm = null;
+const terms = document.querySelectorAll('.term');
+const defs = document.querySelectorAll('.def');
 
-draggables.forEach(item => {
-    item.addEventListener('dragstart', () => item.classList.add('dragging'));
-    item.addEventListener('dragend', () => item.classList.remove('dragging'));
-});
+terms.forEach(btn => btn.addEventListener('click', () => {
+    // Снимаем выделение с других терминов
+    terms.forEach(t => t.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedTerm = btn;
+}));
 
-dropZones.forEach(zone => {
-    zone.addEventListener('dragover', e => {
-        e.preventDefault();
-        zone.classList.add('hover');
-    });
+defs.forEach(btn => btn.addEventListener('click', () => {
+    if (!selectedTerm) {
+        alert("Сначала выберите компонент слева!");
+        return;
+    }
 
-    zone.addEventListener('dragleave', () => zone.classList.remove('hover'));
-
-    zone.addEventListener('drop', e => {
-        e.preventDefault();
-        zone.classList.remove('hover');
-        const draggedItem = document.querySelector('.dragging');
-        
-        if (draggedItem.id === zone.dataset.match) {
-            zone.classList.add('correct');
-            zone.innerText = draggedItem.innerText;
-            draggedItem.style.display = 'none';
-            checkWin();
-        } else {
-            alert('Попробуйте еще раз!');
-        }
-    });
-});
+    if (selectedTerm.dataset.id === btn.dataset.match) {
+        // Успех
+        selectedTerm.classList.add('matched');
+        btn.classList.add('matched');
+        selectedTerm = null;
+        checkWin();
+    } else {
+        // Ошибка
+        btn.classList.add('error');
+        setTimeout(() => btn.classList.remove('error'), 400);
+    }
+}));
 
 function checkWin() {
-    if (document.querySelectorAll('.correct').length === 4) {
-        alert('Поздравляем! Вы верно определили все компоненты!');
+    const matchedCount = document.querySelectorAll('.btn.matched').length;
+    if (matchedCount === (terms.length + defs.length)) {
+        alert("🎉 Отлично! Стратегия сформирована верно.");
     }
 }
 
-document.getElementById('resetBtn').onclick = () => location.reload();
+document.getElementById('reset-btn').onclick = () => location.reload();
